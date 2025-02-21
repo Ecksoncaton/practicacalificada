@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Paciente</title>
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/128/10804/10804531.png" type="image/x-icon">
+    <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container text-center" style="margin-top: 100px;">
+        <div class="mt-4">
+            <a href="ejercicio 1.html" class="btn btn-primary btn-animated mx-2">Ejercicio 1</a>
+            <a href="index.html" class="btn btn-success btn-animated mx-2">Inicio</a>
+            <a href="ejercicio 3.html" class="btn btn-danger btn-animated mx-2">Ejercicio 3</a>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <h2>Registro de Paciente</h2>
+        <form onsubmit="event.preventDefault(); registrarPaciente();">
+            <div class="form-group">
+                <label for="dni">DNI:</label>
+                <input type="text" class="form-control" id="dni" required>
+            </div>
+            <div class="form-group">
+                <label for="nroCita">Número de Cita:</label>
+                <input type="number" class="form-control" id="nroCita" required>
+            </div>
+            <div class="form-group">
+                <label for="consulta">Consulta:</label>
+                <select class="form-control" id="consulta" required>
+                    <option value="">Seleccione una consulta</option>
+                    <option value="cardiología">Cardiología</option>
+                    <option value="odontología">Odontología</option>
+                    <option value="traumatología">Traumatología</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+        <h3 class="mt-4" id="resultado"></h3>
+    </div>
+</body>
+<script>
+    function registrarPaciente() {
+        const dni = document.getElementById('dni').value;
+        const nroCita = parseInt(document.getElementById('nroCita').value);
+        const consulta = document.getElementById('consulta').value;
+        let atencion;
+
+        if (consulta === 'cardiología') {
+            atencion = (nroCita < 21) ? 'Aceptada' : 'Postergada';
+        } else if (consulta === 'odontología') {
+            atencion = (nroCita < 16) ? 'Aceptada' : 'Postergada';
+        } else if (consulta === 'traumatología') {
+            atencion = (nroCita < 31) ? 'Aceptada' : 'Postergada';
+        } else {
+            atencion = 'Consulta no válida';
+        }
+
+        document.getElementById('resultado').innerText = `DNI: ${dni}, N° de Cita: ${nroCita}, Consulta: ${consulta}, Atención: ${atencion}`;
+    }
+</script>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Personal</title>
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/128/4616/4616041.png" type="image/x-icon">
+    <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container text-center" style="margin-top: 100px;">
+        <div class="mt-4">
+            <a href="index.html" class="btn btn-primary btn-animated mx-2">Inicio</a>
+            <a href="ejercicio 2.html" class="btn btn-success btn-animated mx-2">Ejercicio 2</a>
+            <a href="ejercicio 3.html" class="btn btn-danger btn-animated mx-2">Ejercicio 3</a>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <h1 class="text-center">Registro de Personal</h1>
+        <form id="registroForm" class="mt-4">
+            <div class="mb-3">
+                <label for="dni" class="form-label">DNI</label>
+                <input type="text" class="form-control" id="dni" required>
+            </div>
+            <div class="mb-3">
+                <label for="nombres" class="form-label">Nombres</label>
+                <input type="text" class="form-control" id="nombres" required>
+            </div>
+            <div class="mb-3">
+                <label for="tipoOperario" class="form-label">Tipo de Operario</label>
+                <select class="form-select" id="tipoOperario" required>
+                    <option value="albañil">Albañil</option>
+                    <option value="calderero">Calderero</option>
+                    <option value="carpintero">Carpintero</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="edad" class="form-label">Edad</label>
+                <input type="number" class="form-control" id="edad" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+
+        <h2 class="mt-5">Asignación de Proyectos</h2>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>DNI</th>
+                    <th>Nombres</th>
+                    <th>Tipo de Operario</th>
+                    <th>Edad</th>
+                    <th>Proyecto Asignado</th>
+                </tr>
+            </thead>
+            <tbody id="tablaPersonal">
+            </tbody>
+        </table>
+    </div>
+</body>
+<script>
+    document.getElementById('registroForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const dni = document.getElementById('dni').value;
+    const nombres = document.getElementById('nombres').value;
+    const tipoOperario = document.getElementById('tipoOperario').value;
+    const edad = parseInt(document.getElementById('edad').value);
+    let proyecto;
+    if (tipoOperario === 'albañil') {
+        proyecto = (edad < 41) ? 'Proyecto 1' : 'Proyecto 2';
+    } else if (tipoOperario === 'calderero') {
+        proyecto = (edad < 36) ? 'Proyecto 1' : 'Proyecto 2';
+    } else if (tipoOperario === 'carpintero') {
+        proyecto = (edad < 51) ? 'Proyecto 1' : 'Proyecto 2';
+    }
+    const tablaPersonal = document.getElementById('tablaPersonal');
+    const nuevaFila = tablaPersonal.insertRow();
+    nuevaFila.insertCell().textContent = dni;
+    nuevaFila.insertCell().textContent = nombres;
+    nuevaFila.insertCell().textContent = tipoOperario;
+    nuevaFila.insertCell().textContent = edad;
+    nuevaFila.insertCell().textContent = proyecto;
+    document.getElementById('registroForm').reset();
+});
+</script>
+</html>
